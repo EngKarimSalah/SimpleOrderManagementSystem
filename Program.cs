@@ -1,5 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
+using SimpleOrderManagementSystem.Repositories;
+using SimpleOrderManagementSystem.Services;
 
 namespace SimpleOrderManagementSystem
 {
@@ -17,6 +19,8 @@ namespace SimpleOrderManagementSystem
 
                 );
 
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();    
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
