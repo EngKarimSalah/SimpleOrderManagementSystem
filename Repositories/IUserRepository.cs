@@ -6,5 +6,7 @@ namespace SimpleOrderManagementSystem.Repositories
     {
         int AddUser(User user);
         User GetUserForLogin(string email,string password);
+
+        User GetUserById(int id);
     }
 }

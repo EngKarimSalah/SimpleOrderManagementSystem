@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SimpleOrderManagementSystem.DTOs;
 using SimpleOrderManagementSystem.Models;
 using SimpleOrderManagementSystem.Services;
@@ -40,7 +41,7 @@ namespace SimpleOrderManagementSystem.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("Login")]
         public IActionResult Login(string email, string password)
         {
             string token = _userService.login(email, password);
@@ -51,6 +52,19 @@ namespace SimpleOrderManagementSystem.Controllers
             }
 
             return Ok(new { token } );
+        }
+
+        [Authorize]
+        [HttpGet("GetUserDetails")]
+        public IActionResult GetUserDetails(int id)
+        {
+            var user = _userService.GetUserById(id);
+            if(user == null)
+            {
+                return NotFound("user not found");
+            }
+            return Ok(user);
+
         }
 
 

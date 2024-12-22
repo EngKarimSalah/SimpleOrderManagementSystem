@@ -30,5 +30,10 @@ namespace SimpleOrderManagementSystem.Repositories
            return _context.Users.Where(u => u.Email == email & u.Password == password).FirstOrDefault();
         
         }
+
+        public User GetUserById(int id)
+        {
+            return _context.Users.Where(u => u.UId == id).FirstOrDefault();
+        }
     }
 }

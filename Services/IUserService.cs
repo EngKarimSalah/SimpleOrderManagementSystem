@@ -1,4 +1,5 @@
 ﻿using SimpleOrderManagementSystem.DTOs;
+using SimpleOrderManagementSystem.Models;
 
 namespace SimpleOrderManagementSystem.Services
 {
@@ -6,5 +7,7 @@ namespace SimpleOrderManagementSystem.Services
     {
         int AddUser(UserInputDTO userInputDTO);
         string login(string email, string password);
+
+        UserOutputDTO GetUserById(int id);
     }
 }

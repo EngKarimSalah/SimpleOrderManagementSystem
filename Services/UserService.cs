@@ -39,7 +39,6 @@ namespace SimpleOrderManagementSystem.Services
 
         }
 
-
         public string login(string email, string password)
         {
             string HashedPassword = PasswordHashing(password);
@@ -52,6 +51,29 @@ namespace SimpleOrderManagementSystem.Services
             else 
             {
                return GenerateJwtToken(user.UId.ToString(), user.Name);
+            }
+        }
+
+        public UserOutputDTO GetUserById(int id)
+        {
+            try 
+            {
+                var user = _userRepository.GetUserById(id);
+                var outPut = new UserOutputDTO
+                {
+                    name = user.Name,
+                    email = user.Email,
+                    role = user.role,
+                    createdOn = user.CreatedAt
+
+                };
+
+                return outPut;
+            
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception(ex.InnerException.Message);
             }
         }
 
