@@ -19,6 +19,16 @@ namespace SimpleOrderManagementSystem.Repositories
 
         }
 
+       public  List<Product> GetProducts(decimal? minPrice, decimal? maxPrice, int pageNumber, int pageSize)
+        {
+                          
+                 return    _context.Products.Where(p => p.Price >= minPrice && p.Price <= maxPrice)
+                                            .Skip( pageSize * ( pageNumber - 1 ))
+                                            .Take(pageSize)
+                                            .OrderBy(p => p.Price)
+                                            .ToList();
+        }
+
 
     }
 }

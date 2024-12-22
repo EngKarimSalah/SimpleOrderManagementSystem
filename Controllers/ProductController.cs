@@ -42,5 +42,17 @@ namespace SimpleOrderManagementSystem.Controllers
                 }
             }
         }
+
+        [HttpGet]
+        public IActionResult GetProducts([FromQuery] decimal? minPrice, [FromQuery] decimal? maxPrice, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            // Validate page parameters
+            if (pageNumber < 1 || pageSize < 1)
+            {
+                return BadRequest(new { Message = "Page number and page size must be greater than 0." });
+            }
+            var products = _productService.GetProducts(minPrice, maxPrice, pageNumber, pageSize);
+            return Ok(products);
+        }
     }
 }

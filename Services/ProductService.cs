@@ -1,4 +1,5 @@
-﻿using SimpleOrderManagementSystem.DTOs;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using SimpleOrderManagementSystem.DTOs;
 using SimpleOrderManagementSystem.Models;
 using SimpleOrderManagementSystem.Repositories;
 
@@ -6,11 +7,11 @@ namespace SimpleOrderManagementSystem.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _repository;
+        private readonly IProductRepository _ProductRepository;
 
         public ProductService(IProductRepository repository)
         {
-            _repository = repository;
+            _ProductRepository = repository;
         }
 
         public int AddProduct(ProductInputDTO input)
@@ -26,8 +27,26 @@ namespace SimpleOrderManagementSystem.Services
                 CreatedAt = DateTime.Now,
             };
 
-            return _repository.AddProduct(product);
+            return _ProductRepository.AddProduct(product);
 
+        }
+
+        public List<ProductOutputDTO> GetProducts(decimal? minPrice, decimal? maxPrice, int pageNumber, int pageSize)
+        {
+            minPrice = minPrice ?? 0;
+            maxPrice = maxPrice ?? 100;
+
+            var products =_ProductRepository.GetProducts(minPrice, maxPrice, pageNumber, pageSize);
+            var outputList = new List<ProductOutputDTO>();
+            foreach (var product in products)
+            {
+                outputList.Add(
+                                     new ProductOutputDTO { ProductName=product.Name, price=product.Price, stock=product.Stock}
+                              );
+          
+            };
+            
+            return outputList;
         }
     }
 }
