@@ -4,6 +4,7 @@ namespace SimpleOrderManagementSystem.Helpers
 {
     public class JwtHelper
     {
+        //helper methods for jwt
         public static string ExtractToken(HttpRequest request)
         {
             const string authorizationHeader = "Authorization";
@@ -25,7 +26,7 @@ namespace SimpleOrderManagementSystem.Helpers
             if (handler.CanReadToken(jwtToken))
             {
                 var jwtTokenObj = handler.ReadJwtToken(jwtToken);
-                var claim = jwtTokenObj.Claims.FirstOrDefault(c => c.Type == "sub");
+                var claim = jwtTokenObj.Claims.FirstOrDefault(c => c.Type == claimType);
                 return claim?.Value;
             }
             throw new ArgumentException("Invalid JWT Token.");

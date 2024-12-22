@@ -24,7 +24,7 @@ namespace SimpleOrderManagementSystem.Controllers
         public IActionResult PlaceOrder(List<OrderProductInputDTO> orderItems)
         {
             string token = JwtHelper.ExtractToken(Request);
-            int userID = int.Parse( JwtHelper.GetClaimValue(token,"Sub") );
+            int userID = int.Parse( JwtHelper.GetClaimValue(token,"sub") );
 
             int orderId =  _compoudedServices.PlaceOrder(orderItems,userID);
             return Ok(orderId);
