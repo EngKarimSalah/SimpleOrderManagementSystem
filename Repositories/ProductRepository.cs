@@ -29,6 +29,15 @@ namespace SimpleOrderManagementSystem.Repositories
                                             .ToList();
         }
 
+        public Product GetProductByName(string name) 
+        {
+            return _context.Products.Where(p => p.Name == name).FirstOrDefault();
+        }
+
+        public void UpdateStocks(List<Product> products)
+        {
+                 _context.UpdateRange(products);
+        }
 
     }
 }

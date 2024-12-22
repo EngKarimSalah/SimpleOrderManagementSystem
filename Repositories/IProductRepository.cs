@@ -8,5 +8,9 @@ namespace SimpleOrderManagementSystem.Repositories
 
         List<Product> GetProducts(decimal? minPrice, decimal? maxPrice, int pageNumber, int pageSize);
 
+        Product GetProductByName(string name);
+
+        void UpdateStocks(List<Product> products);
+
     }
 }

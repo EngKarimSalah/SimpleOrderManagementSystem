@@ -48,5 +48,16 @@ namespace SimpleOrderManagementSystem.Services
             
             return outputList;
         }
+
+       public Product GetProductByName(string name)
+        {
+            return _ProductRepository.GetProductByName(name);   
+        }
+
+        public void UpdateStocks(List<Product> products)
+        {
+            _ProductRepository.UpdateStocks(products);
+        }
+
     }
 }

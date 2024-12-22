@@ -9,6 +9,11 @@ namespace SimpleOrderManagementSystem.Services
         int AddProduct(ProductInputDTO input);
 
         List<ProductOutputDTO> GetProducts(decimal? minPrice, decimal? maxPrice, int pageNumber, int pageSize);
-   
+
+        Product GetProductByName(string name);
+
+        void UpdateStocks(List<Product> products);
+
+
     }
 }
