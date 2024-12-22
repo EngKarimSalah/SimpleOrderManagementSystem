@@ -40,5 +40,19 @@ namespace SimpleOrderManagementSystem.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Login(string email, string password)
+        {
+            string token = _userService.login(email, password);
+
+            if(token == null) 
+            {
+                return BadRequest(new { Message = "Invalid Credintials" });
+            }
+
+            return Ok(new { token } );
+        }
+
+
     }
 }

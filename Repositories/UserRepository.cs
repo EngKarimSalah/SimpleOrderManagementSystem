@@ -24,5 +24,11 @@ namespace SimpleOrderManagementSystem.Repositories
                 throw new Exception(ex.InnerException.Message);
             }
         }
+
+        public User GetUserForLogin(string email, string password)
+        { 
+           return _context.Users.Where(u => u.Email == email & u.Password == password).FirstOrDefault();
+        
+        }
     }
 }
