@@ -7,6 +7,7 @@ namespace SimpleOrderManagementSystem.Helpers
         //helper methods for jwt
         //1
         //3
+        //5
         public static string ExtractToken(HttpRequest request)
         {
             const string authorizationHeader = "Authorization";
