@@ -35,7 +35,7 @@ namespace SimpleOrderManagementSystem.Controllers
             catch (Exception ex)
             {
 
-                return StatusCode(500, new { Message = "An error occurred while adding the user", Error = ex.InnerException.Message });
+                return StatusCode(500, new { Message = "An error occurred while adding the user", Error = ex.Message });
             
             }
         }
