@@ -41,7 +41,7 @@ namespace SimpleOrderManagementSystem.Controllers
         }
 
 
-        [HttpGet("Login")]
+        [HttpGet]
         public IActionResult Login(string email, string password)
         {
             string token = _userService.login(email, password);
@@ -52,19 +52,6 @@ namespace SimpleOrderManagementSystem.Controllers
             }
 
             return Ok(new { token } );
-        }
-
-        [Authorize]
-        [HttpGet("GetUserDetails")]
-        public IActionResult GetUserDetails(int id)
-        {
-            var user = _userService.GetUserById(id);
-            if(user == null)
-            {
-                return NotFound("user not found");
-            }
-            return Ok(user);
-
         }
 
 
