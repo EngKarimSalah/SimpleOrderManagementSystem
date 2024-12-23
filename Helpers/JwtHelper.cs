@@ -5,6 +5,7 @@ namespace SimpleOrderManagementSystem.Helpers
     public class JwtHelper
     {
         //helper methods for jwt
+        //1
         //3
         public static string ExtractToken(HttpRequest request)
         {
